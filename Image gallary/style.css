@@ -1,0 +1,126 @@
+*  {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body {
+    background: #343536;
+}
+
+header {
+    background-color: #a325a9d0; 
+    color: rgb(28, 243, 229);
+    text-align: center;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.moving-header {
+    display: inline-block;
+    white-space: nowrap;
+    animation: move 12s linear infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.img-gallery {
+    width: 80%;
+    margin: 50px auto; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+}
+.img-gallery img {
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-gallery img:hover {
+    transform: scale(0.9) rotate(-5deg);
+    border-radius: 20px;
+    box-shadow: 0 32px 75px rgba(68, 77, 136, 0.2);
+}
+
+.full-img {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+.full-img.show {
+    display: flex;
+    opacity: 1;
+}
+.full-img img {
+    width: 80%;
+    max-width: 1000px;
+    transition: transform 0.5s ease;
+}
+.full-img span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+.full-img span:hover {
+    color: #4CAF50;
+}
+.full-img .close {
+    top: 5%;
+    right: 5%;
+}
+.full-img .prev, .full-img .next {
+    top: 50%;
+}
+.full-img .prev {
+    left: 5%;
+}
+.full-img .next {
+    right: 5%;
+}
+
+@media (max-width: 768px) {
+    .img-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    .full-img img {
+        width: 95%;
+        max-width: 300px;
+    }
+    .full-img span {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 0;
+    }
+    .full-img img {
+        width: 100%;
+        max-width: 200px;
+    }
+    .full-img span {
+        font-size: 15px;
+    }
+}
